@@ -2,3 +2,4 @@ config
 csv_files/
 excel_files
 html
+app/screen_names.yml
