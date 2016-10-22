@@ -20,11 +20,15 @@ class OKCupidScraper
   def scrape_each(screen_names)
     CSVCreator.create_csv_file_header!
 
-    screen_names.shuffle.each do |screen_name|
-      html_file = @scraper.get "https://www.okcupid.com/profile/#{screen_name}"
-      html_file.save!("../html/#{YEAR}.#{MONTH}/#{FILE_AND_FOLDER_NAME}/#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html")
-      sleep rand(0.5)
-      CSVCreator.add_rows_to_csv_file!([html_file])
+    screen_names.uniq.each do |screen_name|
+      begin
+        html_file = @scraper.get "https://www.okcupid.com/profile/#{screen_name}"
+        html_file.save!("../html/#{YEAR}.#{MONTH}/#{FILE_AND_FOLDER_NAME}/#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html")
+        sleep rand(0.5)
+        CSVCreator.add_rows_to_csv_file!([html_file])
+      rescue
+        next
+      end
     end
   end
 end
