@@ -3,6 +3,7 @@ class StringSanitizer
   def self.sanitize!(string)
     better_quotation_marks!(string)
     eliminate_weird_chars!(string)
+    string.strip!
     string
   end
 

@@ -1,4 +1,5 @@
 require 'mechanize'
+require 'fileutils'
 
 require_relative 'CSV_creator'
 
@@ -7,6 +8,11 @@ class OKCupidScraper
     @username = username
     @password = password
     @scraper = Mechanize.new
+  end
+
+  def make_html_directory!
+    array = FileUtils.mkdir_p("#{__dir__}/../html/#{YEAR}.#{MONTH}")
+    array[0]
   end
 
   def login
@@ -22,11 +28,15 @@ class OKCupidScraper
 
     screen_names.uniq.each do |screen_name|
       begin
-        html_file = @scraper.get "https://www.okcupid.com/profile/#{screen_name}"
-        html_file.save!("../html/#{YEAR}.#{MONTH}/#{FILE_AND_FOLDER_NAME}/#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html")
-        sleep rand(0.5)
+        html_file = @scraper.get "https://www.okcupid.com/profile/#{screen_name}?cf=regular,matchsearch"
+        dirname = make_html_directory!
+        html_file.save!("#{dirname}/#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html")
+        sleep rand(0.25)
+        p "Collecting data for #{screen_name}"
         CSVCreator.add_rows_to_csv_file!([html_file])
       rescue
+        p "No data for #{screen_name}"
+        CSVCreator.create_error_row!(screen_name)
         next
       end
     end
