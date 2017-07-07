@@ -10,11 +10,6 @@ class OKCupidScraper
     @scraper = Mechanize.new
   end
 
-  def make_html_directory!
-    array = FileUtils.mkdir_p("#{__dir__}/../html/#{YEAR}.#{MONTH}")
-    array[0]
-  end
-
   def login
     login_page = @scraper.get 'https://www.okcupid.com/login'
     login_form = login_page.form_with(id: 'loginbox_form')
@@ -40,5 +35,13 @@ class OKCupidScraper
         next
       end
     end
+  end
+
+  private
+
+
+  def make_html_directory!
+    array = FileUtils.mkdir_p("#{__dir__}/../html/#{YEAR}.#{MONTH}")
+    array[0]
   end
 end
