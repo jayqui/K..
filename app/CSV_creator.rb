@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 class CSVCreator
   def self.make_csv_directory!
@@ -10,30 +9,6 @@ class CSVCreator
   def self.create_csv_file!(files_to_scrape) # for files already saved to a directory
     create_csv_file_header!
     add_rows_to_csv_file!(files_to_scrape)
-  end
-
-  def self.create_csv_file_header!
-    dirname = make_csv_directory!
-    CSV.open("#{dirname}/#{FILE_AND_FOLDER_NAME}.csv", "w", headers: true) do |csv|
-      csv << [
-        'priority',
-        'username',
-        'last messaged',
-        'match %',
-        'basics',
-        'ft.',
-        'in.',
-        'body',
-        'age',
-        'city',
-        'last online',
-        'has kids',
-        'wants kids',
-        'lifestyle',
-        'background',
-        'description'
-     ]
-    end
   end
 
   def self.add_rows_to_csv_file!(files_to_scrape)

@@ -2,6 +2,7 @@ require 'mechanize'
 require 'fileutils'
 
 require_relative 'CSV_creator'
+require_relative 'csv/file_header_creator'
 
 class OKCupidScraper
   def initialize(username:, password:)
@@ -19,22 +20,25 @@ class OKCupidScraper
   end
 
   def scrape_each(screen_names)
-    CSVCreator.create_csv_file_header!
+    # CSVCreator.create_csv_file_header!
+    CSV::FileHeaderCreator.call
 
     screen_names.uniq.each do |screen_name|
       begin
         html_file = get_profile(screen_name)
-        dirname = make_directory!
-        html_file.save!("#{dirname}/#{filename(html_file)}")
+        # dirname = make_html_directory!
+        # html_file.save!("#{dirname}/#{filename(html_file)}")
 
         sleep rand(0.25)
         puts "Collecting data for #{screen_name}"
 
         CSVCreator.add_rows_to_csv_file!([html_file])
+        # CSV::RowAdder.call(html_file)
       rescue
         puts "No data for #{screen_name}"
 
         CSVCreator.create_error_row!(screen_name)
+        # CSV::ErrorRow.call(screen_name)
         next
       end
     end
@@ -50,12 +54,12 @@ class OKCupidScraper
     )
   end
 
-  def filename(html_file)
-    "#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html"
-  end
+  # def filename(html_file)
+  #   "#{html_file.title.gsub(/ \/ /,'_').sub('OkCupid','')}.html"
+  # end
 
-  def make_directory!
-    array = FileUtils.mkdir_p("#{__dir__}/../html/#{YEAR}.#{MONTH}")
-    array[0]
-  end
+  # def make_html_directory!
+  #   array = FileUtils.mkdir_p("#{__dir__}/../html/#{YEAR}.#{MONTH}")
+  #   array[0]
+  # end
 end
