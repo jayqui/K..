@@ -1,7 +1,6 @@
 require 'date'
 
 class DateTransformer
-
   DAYS = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
 
   def self.transform(date_string)
@@ -37,5 +36,4 @@ class DateTransformer
       ''
     end
   end
-
 end
