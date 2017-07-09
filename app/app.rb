@@ -9,7 +9,7 @@ MONTH = Date.today.month
 DAY   = Date.today.day
 FILE_AND_FOLDER_NAME = "#{YEAR}.#{MONTH}.#{DAY}"
 
-# list of usernames to scrape live
+# array of usernames to scrape directly from okcupid.com
 username_list = YAML::load_file(File.join(__dir__, 'screen_names.yml'))
 
 scraper = OkCupidScraper.new(
