@@ -1,19 +1,14 @@
-require 'mechanize'
-require 'fileutils'
-require 'require_all'
-require 'csv'
+require_rel 'csv'
 
-require_rel 'csv' # via require_all gem : https://github.com/jarmo/require_all
-
-class OKCupidScraper
+class OkCupidScraper
   def initialize(username:, password:)
     @username = username
     @password = password
-    @scraper = Mechanize.new
+    @mechanize = Mechanize.new
   end
 
   def login
-    login_page = scraper.get('https://www.okcupid.com/login')
+    login_page = mechanize.get('https://www.okcupid.com/login')
     login_form = login_page.form_with(id: 'loginbox_form')
     login_form.field_with(id: 'login_username').value = username
     login_form.field_with(id: 'login_password').value = password
@@ -35,7 +30,7 @@ class OKCupidScraper
 
   private
 
-  attr_reader :scraper, :username, :password
+  attr_reader :mechanize, :username, :password
 
   def get_html_file!(screen_name)
     puts "Looking up data for #{screen_name}"
@@ -70,7 +65,7 @@ class OKCupidScraper
   end
 
   def get_profile(screen_name)
-    scraper.get(
+    mechanize.get(
       "https://www.okcupid.com/profile/#{screen_name}?cf=regular,matchsearch"
     )
   end

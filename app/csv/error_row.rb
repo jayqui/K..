@@ -1,5 +1,3 @@
-require 'procto'
-
 class CSV::ErrorRow
   include Procto.call
 
