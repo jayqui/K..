@@ -1,5 +1,3 @@
-require 'procto'
-
 class CSV::FileHeaderCreator
   include Procto.call
 

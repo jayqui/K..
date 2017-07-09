@@ -1,9 +1,19 @@
+# libraries
 require 'yaml'
-require_relative '../config/user_info'
-require_relative 'helpers/date_transformer'
-require_relative 'helpers/string_sanitizer'
+require 'fileutils'
+require 'csv'
+
+# gems
+require 'mechanize'
+require 'procto'
+require 'require_all'
+
+# files & directories
+require_rel '../config' # via require_all gem : https://github.com/jarmo/require_all
+require_rel 'helpers'
 require_relative 'ok_cupid_scraper'
 
+# constants
 YEAR  = Date.today.year
 MONTH = Date.today.month
 DAY   = Date.today.day

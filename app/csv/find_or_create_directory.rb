@@ -1,5 +1,3 @@
-require 'procto'
-
 class CSV::FindOrCreateDirectory
   include Procto.call
 

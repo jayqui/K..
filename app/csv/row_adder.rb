@@ -1,6 +1,3 @@
-require 'procto'
-require 'pry'
-
 class CSV::RowAdder
   include Procto.call
 

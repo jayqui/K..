@@ -1,9 +1,4 @@
-require 'mechanize'
-require 'fileutils'
-require 'require_all'
-require 'csv'
-
-require_rel 'csv' # via require_all gem : https://github.com/jarmo/require_all
+require_rel 'csv'
 
 class OkCupidScraper
   def initialize(username:, password:)
