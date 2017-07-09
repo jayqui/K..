@@ -5,7 +5,7 @@ require 'csv'
 
 require_rel 'csv' # via require_all gem : https://github.com/jarmo/require_all
 
-class OKCupidScraper
+class OkCupidScraper
   def initialize(username:, password:)
     @username = username
     @password = password
