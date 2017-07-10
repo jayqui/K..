@@ -18,7 +18,7 @@ class CSV::RowAdder
   attr_reader :file, :destination_directory, :adapter
 
   def filename
-    "#{destination_directory}/#{FILE_AND_FOLDER_NAME}.csv"
+    "#{destination_directory}/#{Constants::FILE_AND_FOLDER_NAME}.csv"
   end
 
   def create_csv_row!

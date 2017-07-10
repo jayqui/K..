@@ -15,7 +15,7 @@ class CSV::FileHeaderCreator
   alias_method :dirname, :destination_directory
 
   def create_csv_file_header!
-    CSV.open("#{dirname}/#{FILE_AND_FOLDER_NAME}.csv", "w", headers: true) do |csv|
+    CSV.open(filename, "w", headers: true) do |csv|
       csv << [
         "priority",
         "username",
@@ -35,5 +35,9 @@ class CSV::FileHeaderCreator
         "description"
      ]
     end
+  end
+
+  def filename
+    "#{dirname}/#{Constants::FILE_AND_FOLDER_NAME}.csv"
   end
 end

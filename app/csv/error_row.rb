@@ -18,6 +18,6 @@ class CSV::ErrorRow
   attr_reader :destination_directory, :screen_name
 
   def filename
-    "#{destination_directory}/#{FILE_AND_FOLDER_NAME}.csv"
+    "#{destination_directory}/#{Constants::FILE_AND_FOLDER_NAME}.csv"
   end
 end

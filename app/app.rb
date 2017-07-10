@@ -14,10 +14,12 @@ require_rel 'helpers'
 require_relative 'ok_cupid_scraper'
 
 # constants
-YEAR  = Date.today.year
-MONTH = Date.today.month
-DAY   = Date.today.day
-FILE_AND_FOLDER_NAME = "#{YEAR}.#{MONTH}.#{DAY}"
+class Constants
+  YEAR  = Date.today.year
+  MONTH = Date.today.month
+  DAY   = Date.today.day
+  FILE_AND_FOLDER_NAME = "#{YEAR}.#{MONTH}.#{DAY}".freeze
+end
 
 # array of usernames to scrape directly from okcupid.com
 username_list = YAML::load_file(File.join(__dir__, 'screen_names.yml'))
