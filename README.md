@@ -21,9 +21,14 @@ end
 - ...
 ```
 
+### Setup
+```
+bundle install
+```
+
 ### To Run
 ```
-ruby app/app.rb
+bundle exec ruby app/app.rb
 ```
 
 ### Output
