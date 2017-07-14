@@ -1,4 +1,6 @@
 class CSV::RowAdder::Adapter
+  using StringSanitizer
+
   attr_reader :file
 
   def initialize(file:)
@@ -28,34 +30,34 @@ class CSV::RowAdder::Adapter
   end
 
   def basics
-    StringSanitizer.sanitize!(all_basics[1])
+    all_basics[1].sanitize!
   rescue
     'n/a'
   end
 
   def feet
     feet = all_basics[2] || ''
-    StringSanitizer.sanitize!(feet.sub(/’/,''))
+    feet.sub(/’/,'').sanitize!
   rescue
     'n/a'
   end
 
   def inches
     inches = all_basics[3] || ''
-    StringSanitizer.sanitize!(inches.sub(/”/,''))
+    inches.sub(/”/,'').sanitize!
   rescue
     'n/a'
   end
 
   def body
     body = all_basics[4] || ''
-    StringSanitizer.sanitize!(body.sub(/, /, ''))
+    body.sub(/, /, '').sanitize!
   rescue
     'n/a'
   end
 
   def lifestyle
-    StringSanitizer.sanitize!(file.css(".details2015-section.misc td")[1].text)
+    file.css(".details2015-section.misc td")[1].text.sanitize!
   end
 
   def last_online
@@ -103,7 +105,7 @@ class CSV::RowAdder::Adapter
   end
 
   def background
-    StringSanitizer.sanitize!(file.css(".details2015-section.background td")[1].text)
+    file.css(".details2015-section.background td")[1].text.sanitize!
   end
 
   def description

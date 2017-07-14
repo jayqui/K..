@@ -1,21 +1,21 @@
-class StringSanitizer
-  def self.sanitize!(string)
-    better_quotation_marks!(string)
-    eliminate_weird_chars!(string)
-    string.strip!
-    string
-  end
+module StringSanitizer
+  refine String do
+    def sanitize!
+      self.better_quotation_marks!
+      self.eliminate_weird_chars!
+      self.strip!
+      self
+    end
 
-  private
+    def better_quotation_marks!
+      self.gsub!("’","'")
+      self.gsub!('”','"')
+      self
+    end
 
-  def self.better_quotation_marks!(string)
-    string.gsub!("’","'")
-    string.gsub!('”','"')
-    return string
-  end
-
-  def self.eliminate_weird_chars!(string)
-    string.gsub!(' ', '')
-    return string
+    def eliminate_weird_chars!
+      self.gsub!(' ', '')
+      self
+    end
   end
 end
