@@ -9,7 +9,7 @@ class CSV::RowAdder
 
   def call
     CSV.open(filename, "a") do |csv|
-      csv << create_csv_row!
+      csv << new_csv_row
     end
   end
 
@@ -21,7 +21,7 @@ class CSV::RowAdder
     "#{destination_directory}/#{Constants::FILE_AND_FOLDER_NAME}.csv"
   end
 
-  def create_csv_row!
+  def new_csv_row
     [
       '',
       adapter.username,

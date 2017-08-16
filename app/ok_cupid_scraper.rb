@@ -51,6 +51,7 @@ class OkCupidScraper
       screen_name: screen_name,
       message: "deleted apparently",
     )
+    raise
   end
 
   def read_and_record_data!(html:, screen_name:)

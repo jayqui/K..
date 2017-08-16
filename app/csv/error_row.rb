@@ -15,7 +15,7 @@ class CSV::ErrorRow
 
   private
 
-  attr_reader :destination_directory, :screen_name
+  attr_reader :destination_directory, :screen_name, :message
 
   def filename
     "#{destination_directory}/#{Constants::FILE_AND_FOLDER_NAME}.csv"
