@@ -9,8 +9,9 @@ require 'procto'
 require 'require_all'
 
 # files & directories
-require_rel '../config' # via require_all gem : https://github.com/jarmo/require_all
-require_rel 'helpers'
+# `require_rel` via require_all gem: https://github.com/jarmo/require_all
+require_rel 'helpers/*'
+require_rel '../config'
 require_relative 'ok_cupid_scraper'
 
 # constants

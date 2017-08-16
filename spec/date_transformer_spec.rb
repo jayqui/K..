@@ -1,8 +1,6 @@
-require 'pry'
 require_relative "../app/helpers/date_transformer"
 
 describe DateTransformer do
-
   let(:online_now) { "Online Now" }
   let(:today)      { "Last online Today - 11:35am" }
   let(:yesterday)  { "Last online Yesterday - 3:22pm" }
@@ -57,5 +55,4 @@ describe DateTransformer do
       expect(DateTransformer.matching_day(dec30)).to eq(nil)
     end
   end
-
 end

@@ -5,7 +5,7 @@ class CSV::FindOrCreateDirectory
     dirname = "#{__dir__}/../../csv_files/#{Constants::YEAR}.#{Constants::MONTH}"
     array = FileUtils.mkdir_p(dirname)
 
-    puts "found or created directory #{dirname}"
+    puts "found or created directory #{dirname}\n\n"
 
     array[0]
   end

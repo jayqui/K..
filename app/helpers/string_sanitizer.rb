@@ -1,9 +1,9 @@
 module StringSanitizer
   refine String do
     def sanitize!
+      self.strip!
       self.better_quotation_marks!
       self.eliminate_weird_chars!
-      self.strip!
       self
     end
 

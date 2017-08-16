@@ -32,15 +32,15 @@ class OkCupidScraper
 
     screen_names.uniq.each do |screen_name|
       begin
-        html_file = get_html_file!(screen_name)
-        read_and_record_data!(html_file: html_file, screen_name: screen_name)
+        html = get_html(screen_name)
+        read_and_record_data!(html: html, screen_name: screen_name)
       rescue
         next
       end
     end
   end
 
-  def get_html_file!(screen_name)
+  def get_html(screen_name)
     puts "Looking up data for #{screen_name}"
     sleep rand(0.25)
     get_profile(screen_name)
@@ -53,12 +53,12 @@ class OkCupidScraper
     )
   end
 
-  def read_and_record_data!(html_file:, screen_name:)
-    puts ". . . . . Recording data for #{screen_name}"
+  def read_and_record_data!(html:, screen_name:)
     CSV::RowAdder.call(
-      file_to_scrape: html_file,
+      file_to_scrape: html,
       destination_directory: destination_directory,
     )
+    puts ". . . . . Recorded data for #{screen_name}"
   rescue
     puts ". . . . . Unreadable data for #{screen_name}"
     CSV::ErrorRow.call(
