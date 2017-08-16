@@ -24,10 +24,8 @@ end
 # array of usernames to scrape directly from okcupid.com
 username_list = YAML::load_file(File.join(__dir__, 'screen_names.yml'))
 
-scraper = OkCupidScraper.new(
+scraper = OkCupidScraper.call(
   username: UserInfo::OKC_USERNAME,
   password: UserInfo::OKC_PASSWORD,
+  usernames_to_scrape: username_list,
 )
-
-scraper.login
-scraper.scrape_each(username_list)

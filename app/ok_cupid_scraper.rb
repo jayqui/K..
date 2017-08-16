@@ -1,11 +1,23 @@
 require_rel 'csv'
 
 class OkCupidScraper
-  def initialize(username:, password:)
+  include Procto.call
+
+  def initialize(username:, password:, usernames_to_scrape:)
     @username = username
     @password = password
+    @usernames_to_scrape = usernames_to_scrape
     @mechanize = Mechanize.new
   end
+
+  def call
+    login
+    scrape_each(usernames_to_scrape)
+  end
+
+  private
+
+  attr_reader :mechanize, :username, :password, :usernames_to_scrape
 
   def login
     login_page = mechanize.get('https://www.okcupid.com/login')
@@ -27,10 +39,6 @@ class OkCupidScraper
       end
     end
   end
-
-  private
-
-  attr_reader :mechanize, :username, :password
 
   def get_html_file!(screen_name)
     puts "Looking up data for #{screen_name}"
