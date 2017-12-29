@@ -19,6 +19,7 @@ class CSV::FileHeaderCreator
       csv << [
         "priority",
         "username",
+        "name",
         "last messaged",
         "match %",
         "basics",

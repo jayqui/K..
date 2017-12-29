@@ -28,8 +28,8 @@ class DateTransformer
   end
 
   def self.handle_last_contacted(doc)
-    if doc.css(".actions2015-chat")[0].attributes["data-tooltip"]
-      last_contacted = doc.css(".actions2015-chat")[0].attributes["data-tooltip"].value
+    if doc.css(".userinfo2015-basics-username-online-icon")[0].attributes["data-tooltip"]
+      last_contacted = doc.css(".userinfo2015-basics-username-online-icon")[0].attributes["data-tooltip"].value
       last_contacted.sub!("Last contacted ","")
       DateTransformer.transform(last_contacted)
     else

@@ -25,6 +25,7 @@ class CSV::RowAdder
     [
       '',
       adapter.username,
+      adapter.name,
       adapter.last_messaged,
       adapter.match_percentage,
       adapter.basics,

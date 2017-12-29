@@ -7,8 +7,12 @@ class CSV::RowAdder::Adapter
     @file = file
   end
 
-  def username
+  def name
     file.css(".userinfo2015-basics-username").text.strip
+  end
+
+  def username
+    file.uri.to_s.gsub("https://www.okcupid.com/profile/", "").gsub(/\?.*/,"")
   end
 
   def last_messaged
@@ -109,6 +113,6 @@ class CSV::RowAdder::Adapter
   end
 
   def description
-    file.css(".essays2015-essay-content").text
+    file.css(".profile-essays").text
   end
 end
